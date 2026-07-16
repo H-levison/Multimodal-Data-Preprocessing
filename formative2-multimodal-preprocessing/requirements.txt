@@ -1,0 +1,17 @@
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+openpyxl
+
+# Task 2 (images) — Divine
+opencv-python
+pillow
+
+# Task 3 (audio) — HonourGod
+librosa
+soundfile
+
+# Task 4 (models) — Gaju
+xgboost
