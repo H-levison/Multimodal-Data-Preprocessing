@@ -13,7 +13,16 @@ See `docs/feature_definitions.md` for the full data dictionary. Summary:
 _TODO: describe image collection, preprocessing, augmentation, and the facial recognition model + results._
 
 ## 4. Audio Pipeline & Voice Verification (HonourGod)
-_TODO: describe audio collection, preprocessing, augmentation, and the voice verification model + results._
+We collected short phrase recordings from each team member and stored them under `data/raw/audio/<member>/`.
+
+Preprocessing and feature extraction steps performed:
+- Resampled recordings to 16 kHz, converted to mono where required.
+- Visualized each sample with waveform and spectrogram plots saved to `data/processed/plots/`.
+- Applied three augmentations per recording: pitch shift, small time-stretch, and background noise.
+- Extracted acoustic features per original and augmented sample: MFCC mean/std, spectral centroid/rolloff, zero-crossing rate, RMS energy, and duration.
+- Saved the aggregated feature table to `data/processed/audio_features.csv` for downstream modeling.
+
+The extracted features will be used to train a voice-verification model (e.g., logistic regression or simple DNN) that outputs a binary verification decision for a claimed identity during the system simulation.
 
 ## 5. Model Integration & Evaluation (Gaju)
 _TODO: describe how the three models are combined, evaluation metrics (accuracy/F1/loss) for each, and the multimodal decision logic._
