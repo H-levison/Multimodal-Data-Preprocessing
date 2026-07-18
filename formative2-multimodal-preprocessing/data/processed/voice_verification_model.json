@@ -1,0 +1,68 @@
+{
+  "strategy": "genuine/impostor pairs (|sample_features - claimed_member_centroid|)",
+  "models_considered": [
+    "logistic_regression",
+    "random_forest"
+  ],
+  "dnn_excluded_reason": "Only 8 recordings per member (32 base clips total); a DNN would have far too little data to train without severe overfitting.",
+  "candidate_results": {
+    "logistic_regression": {
+      "accuracy": 0.9166666666666666,
+      "f1_score": 0.8571428571428571,
+      "log_loss": 0.1673114006742935,
+      "confusion_matrix": [
+        [
+          32,
+          4
+        ],
+        [
+          0,
+          12
+        ]
+      ]
+    },
+    "random_forest": {
+      "accuracy": 0.9375,
+      "f1_score": 0.8695652173913043,
+      "log_loss": 0.18150252981917733,
+      "confusion_matrix": [
+        [
+          35,
+          1
+        ],
+        [
+          2,
+          10
+        ]
+      ]
+    }
+  },
+  "selected_model": "random_forest",
+  "selected_model_metrics": {
+    "accuracy": 0.9375,
+    "f1_score": 0.8695652173913043,
+    "log_loss": 0.18150252981917733,
+    "confusion_matrix": [
+      [
+        35,
+        1
+      ],
+      [
+        2,
+        10
+      ]
+    ]
+  },
+  "feature_columns": [
+    "mfcc_mean",
+    "mfcc_std",
+    "spectral_centroid_mean",
+    "spectral_rolloff_mean",
+    "zero_crossing_rate_mean",
+    "rms_mean",
+    "duration_sec"
+  ],
+  "n_pairs": 128,
+  "n_train": 80,
+  "n_test": 48
+}
