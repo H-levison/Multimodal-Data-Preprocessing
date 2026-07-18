@@ -60,16 +60,31 @@ Logistic Regression and Random Forest were both trained and compared; a simple D
 Random Forest was selected. `verify_voice(claimed_member, audio_features) -> (is_verified, confidence)` in `scripts/voice_verification_model.py` is the function `app/cli_app.py` should call for the voice-verification gate; it correctly accepts genuine claims and rejects impostor claims with low confidence in spot checks (e.g. Andrew's sample claimed as Andrew: verified, confidence 0.67; the same sample claimed as Divine: rejected, confidence 0.004).
 
 ## 5. Model Integration & Evaluation (Gaju)
-_TODO: describe how the three models are combined, evaluation metrics (accuracy/F1/loss) for each, and the multimodal decision logic._
+The CLI (`app/cli_app.py`) runs a strict sequential gate:
+
+1. **Face** — `predict_face()` must recognize a known member or access is denied.
+2. **Product** — `predict_product()` runs quietly on a `customer_id` from `merged_dataset.csv` (result withheld).
+3. **Voice** — `verify_voice()` must match the claimed identity from Stage 1 or access is denied.
+4. **Display** — only then is the recommended product shown.
+
+Per-model metrics live in `data/processed/*_model.json`. Evaluation plan: `docs/evaluation_plan.md`. Product recommendation compares Logistic Regression, Random Forest, and Gradient Boosting on Andrew’s merged features and keeps the best by F1 (`scripts/product_recommendation_model.py`).
 
 ## 6. System Simulation
-_TODO: describe/link the CLI demo — one valid transaction walkthrough, one unauthorized attempt (bad face and/or bad voice)._
+`python -m app.simulate_scenarios` runs three demos:
+
+| Scenario | Expected |
+|---|---|
+| Unauthorized image (`data/demo/images/`) | Denied at Stage 1 |
+| Valid face + unauthorized voice (`data/demo/audio/`) | Denied at Stage 3 |
+| Valid face + valid voice + `customer_id=100` | Granted at Stage 4 |
+
+Interactive CLI: `python -m app.cli_app`.
 
 ## 7. System Demonstration Video
 _Link: TODO_
 
 ## 8. GitHub Repository
-_Link: TODO_
+_Link: https://github.com/H-levison/Multimodal-Data-Preprocessing_
 
 ## 9. Team Contributions
 
