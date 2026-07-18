@@ -1,7 +1,7 @@
 """
 audio_preprocessing.py
 -------------------------
-OWNER: HonourGod — Audio Data Collection & Voice Verification Pipeline
+OWNER: HonourGod, Audio Data Collection & Voice Verification Pipeline
 
 This script:
   - loads audio files from data/raw/audio
@@ -53,7 +53,8 @@ def apply_augmentations(audio: np.ndarray, sr: int) -> List[tuple[str, np.ndarra
     augmented.append(("pitch_shift", pitch_shifted))
     augmented.append(("time_stretch", time_stretched))
 
-    noise = np.random.normal(0, 0.01, size=audio.shape[0])
+    # Seeded RNG so re-running the pipeline reproduces the exact same features/plots.
+    noise = np.random.default_rng(42).normal(0, 0.01, size=audio.shape[0])
     augmented.append(("background_noise", audio + noise))
     return augmented
 
@@ -122,7 +123,7 @@ def process_audio_directory(input_dir: Path | str = RAW_AUDIO_DIR, output_csv: P
             try:
                 audio, sr = load_audio(audio_file)
             except Exception as e:
-                print(f"Warning: could not read {audio_file} — {e}")
+                print(f"Warning: could not read {audio_file}: {e}")
                 continue
             plot_audio(audio, sr, output_plots_dir / f"{member_name}_{audio_file.stem}.png", f"{member_name}/{sample_name}")
 
