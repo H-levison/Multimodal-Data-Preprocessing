@@ -1,0 +1,62 @@
+{
+  "models_considered": [
+    "logistic_regression",
+    "random_forest",
+    "gradient_boosting"
+  ],
+  "candidate_results": {
+    "logistic_regression": {
+      "accuracy": 0.5,
+      "f1_score": 0.4345238095238095,
+      "log_loss": 2.374771751716086
+    },
+    "random_forest": {
+      "accuracy": 0.25,
+      "f1_score": 0.125,
+      "log_loss": 1.8260738514190833
+    },
+    "gradient_boosting": {
+      "accuracy": 0.375,
+      "f1_score": 0.26666666666666666,
+      "log_loss": 5.152467953485467
+    }
+  },
+  "selected_model": "logistic_regression",
+  "selected_model_metrics": {
+    "accuracy": 0.5,
+    "f1_score": 0.4345238095238095,
+    "log_loss": 2.374771751716086
+  },
+  "feature_columns": [
+    "avg_engagement_score",
+    "max_engagement_score",
+    "avg_purchase_interest_score",
+    "avg_sentiment_score",
+    "platform_diversity",
+    "social_record_count",
+    "transaction_frequency",
+    "total_spend",
+    "avg_purchase_amount",
+    "avg_customer_rating",
+    "category_diversity",
+    "recency_days",
+    "customer_tenure_days",
+    "purchase_cadence_days",
+    "platform_Facebook",
+    "platform_Instagram",
+    "platform_Linkedin",
+    "platform_Tiktok",
+    "platform_Twitter",
+    "sentiment_Negative",
+    "sentiment_Neutral",
+    "sentiment_Positive",
+    "favorite_category_Books",
+    "favorite_category_Clothing",
+    "favorite_category_Electronics",
+    "favorite_category_Groceries",
+    "favorite_category_Sports"
+  ],
+  "n_train": 28,
+  "n_test": 8,
+  "n_classes": 5
+}
