@@ -1,0 +1,230 @@
+{
+  "strategy": "multiclass member classification, grouped split holding out the 'surprised' expression",
+  "models_considered": [
+    "logistic_regression",
+    "random_forest"
+  ],
+  "candidate_results": {
+    "logistic_regression": {
+      "accuracy": 0.9,
+      "f1_score": 0.8999999999999999,
+      "log_loss": 0.24242474356433186,
+      "confusion_matrix": [
+        [
+          5,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          4,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          5,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          4
+        ]
+      ],
+      "labels": [
+        "andrew",
+        "divine",
+        "gaju",
+        "honour"
+      ]
+    },
+    "random_forest": {
+      "accuracy": 0.9,
+      "f1_score": 0.8958333333333334,
+      "log_loss": 0.5570441521097742,
+      "confusion_matrix": [
+        [
+          5,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          5,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          5,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          3
+        ]
+      ],
+      "labels": [
+        "andrew",
+        "divine",
+        "gaju",
+        "honour"
+      ]
+    }
+  },
+  "selected_model": "logistic_regression",
+  "selected_model_metrics": {
+    "accuracy": 0.9,
+    "f1_score": 0.8999999999999999,
+    "log_loss": 0.24242474356433186,
+    "confusion_matrix": [
+      [
+        5,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        4,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        5,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        4
+      ]
+    ],
+    "labels": [
+      "andrew",
+      "divine",
+      "gaju",
+      "honour"
+    ]
+  },
+  "unknown_threshold": 0.5,
+  "feature_columns": [
+    "mean_intensity",
+    "std_intensity",
+    "embedding_0",
+    "embedding_1",
+    "embedding_2",
+    "embedding_3",
+    "embedding_4",
+    "embedding_5",
+    "embedding_6",
+    "embedding_7",
+    "embedding_8",
+    "embedding_9",
+    "embedding_10",
+    "embedding_11",
+    "embedding_12",
+    "embedding_13",
+    "embedding_14",
+    "embedding_15",
+    "embedding_16",
+    "embedding_17",
+    "embedding_18",
+    "embedding_19",
+    "embedding_20",
+    "embedding_21",
+    "embedding_22",
+    "embedding_23",
+    "embedding_24",
+    "embedding_25",
+    "embedding_26",
+    "embedding_27",
+    "embedding_28",
+    "embedding_29",
+    "embedding_30",
+    "embedding_31",
+    "embedding_32",
+    "embedding_33",
+    "embedding_34",
+    "embedding_35",
+    "embedding_36",
+    "embedding_37",
+    "embedding_38",
+    "embedding_39",
+    "embedding_40",
+    "embedding_41",
+    "embedding_42",
+    "embedding_43",
+    "embedding_44",
+    "embedding_45",
+    "embedding_46",
+    "embedding_47",
+    "embedding_48",
+    "embedding_49",
+    "embedding_50",
+    "embedding_51",
+    "embedding_52",
+    "embedding_53",
+    "embedding_54",
+    "embedding_55",
+    "embedding_56",
+    "embedding_57",
+    "embedding_58",
+    "embedding_59",
+    "embedding_60",
+    "embedding_61",
+    "embedding_62",
+    "embedding_63",
+    "hist_0",
+    "hist_1",
+    "hist_2",
+    "hist_3",
+    "hist_4",
+    "hist_5",
+    "hist_6",
+    "hist_7",
+    "hist_8",
+    "hist_9",
+    "hist_10",
+    "hist_11",
+    "hist_12",
+    "hist_13",
+    "hist_14",
+    "hist_15",
+    "hist_16",
+    "hist_17",
+    "hist_18",
+    "hist_19",
+    "hist_20",
+    "hist_21",
+    "hist_22",
+    "hist_23",
+    "hist_24",
+    "hist_25",
+    "hist_26",
+    "hist_27",
+    "hist_28",
+    "hist_29",
+    "hist_30",
+    "hist_31"
+  ],
+  "n_train": 40,
+  "n_test": 20,
+  "classes": [
+    "andrew",
+    "divine",
+    "gaju",
+    "honour"
+  ]
+}
