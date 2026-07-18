@@ -12,6 +12,7 @@ pillow
 # Task 3 (audio) — HonourGod
 librosa
 soundfile
+joblib
 
 # Task 4 (models) — Gaju
 xgboost
