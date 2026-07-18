@@ -7,7 +7,7 @@ Example folders already present in the repo:
 - `data/raw/audio/andrew/`
 - `data/raw/audio/divine/`
 - `data/raw/audio/honour/`
-- `data/raw/audio/keane/`
+- `data/raw/audio/gaju/`
 
 Filename guidelines (place the WAV files directly inside each member folder):
 
