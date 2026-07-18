@@ -10,7 +10,29 @@ See `docs/feature_definitions.md` for the full data dictionary. Summary:
 - Final `merged_dataset.csv`: 36 customers x 30 features.
 
 ## 3. Image Pipeline & Facial Recognition (Divine)
-_TODO: describe image collection, preprocessing, augmentation, and the facial recognition model + results._
+We collected 3 expressions per team member (neutral, smile, surprised) — 12 clean selfies across the 4 team members (Andrew, Divine, Gaju, Honour) — stored under `data/raw/images/<member>/`. Full walkthrough with plots and narrative interpretation: `notebooks/Task2_Image_Pipeline_Divine.ipynb`.
+
+**Preprocessing & visualization**
+- Every photo is passed through an OpenCV Haar cascade (`haarcascade_frontalface_default.xml`) to locate and crop the face, resized to a fixed 128x128 — this also normalizes away the large resolution differences in the raw uploads (640px WhatsApp compressions up to 4608px full-resolution phone shots). A face was found in all 12 photos.
+- Mean face brightness and contrast show a consistent per-member signature (e.g. Gaju's crops average ~87 intensity vs. Honour's ~137), which is the basis for part of the recognition signal below, the same way per-speaker energy was for the voice model.
+
+**Augmentation** — 4 applied per photo (exceeds the ≥2 requirement): rotation (+15°), horizontal flip, grayscale conversion, and brightness boost (+40).
+
+**Feature extraction** — an 8x8 downsampled grayscale pixel embedding (64 values, a simple appearance descriptor in the spirit of eigenfaces), a 32-bin grayscale intensity histogram, and mean/std intensity, extracted for every original + augmented sample and saved to `data/processed/image_features.csv` (60 rows = 4 members x 3 expressions x 5 variants).
+
+**Facial recognition model — strategy**
+Unlike the voice task (one recording per phrase, requiring genuine/impostor pairs), each member has 3 base photos here, which is enough to train a plain multiclass classifier directly on the `member` label. Features are standardized and reduced with PCA, then Logistic Regression and Random Forest are trained and compared. The train/test split holds out the "surprised" expression (+ its augmentations) per member as the test set, so the model is evaluated on an expression it never trained on, while staying grouped (no augmented copy of a test photo leaks into training) and class-balanced.
+
+Because a plain classifier always predicts *some* known member, `predict_face()` also thresholds the model's top predicted probability (`UNKNOWN_THRESHOLD = 0.5`): a low-confidence prediction, or a photo with no detectable face at all, is reported as unrecognized rather than trusted.
+
+**Evaluation** (held-out grouped split, 40 train / 20 test rows):
+
+| Model | Accuracy | F1 (macro) | Log loss |
+|---|---|---|---|
+| **Logistic Regression (selected)** | **0.90** | **0.90** | **0.242** |
+| Random Forest | 0.90 | 0.896 | 0.557 |
+
+Logistic Regression was selected. `predict_face(image_path) -> (is_known_user, predicted_member, confidence)` in `scripts/facial_recognition_model.py` is the function `app/cli_app.py` should call as the face-recognition gate; `predicted_member` also doubles as the identity claim passed to `verify_voice()`. In spot checks, every team member's held-out "surprised" photo is correctly recognized (confidence 0.66–0.99), and a synthetic no-face "unauthorized attempt" image is correctly rejected (`is_known_user=False`, confidence 0.0).
 
 ## 4. Audio Pipeline & Voice Verification (HonourGod)
 We collected two phrases per team member ("Yes, approve" and "Confirm transaction") — 8 clean recordings across 4 members (Andrew, Divine, Honour, Gaju) — stored under `data/raw/audio/<member>/`. Full walkthrough with plots and narrative interpretation: `notebooks/Task3_Audio_Pipeline_HonourGod.ipynb`.
