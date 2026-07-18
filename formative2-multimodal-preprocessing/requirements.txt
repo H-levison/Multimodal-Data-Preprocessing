@@ -6,7 +6,7 @@ seaborn
 openpyxl
 
 # Task 2 (images) — Divine
-opencv-python
+opencv-python==4.10.0.84
 pillow
 
 # Task 3 (audio) — HonourGod
