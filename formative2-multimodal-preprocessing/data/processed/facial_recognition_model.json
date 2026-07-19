@@ -8,7 +8,7 @@
     "logistic_regression": {
       "accuracy": 0.9,
       "f1_score": 0.8999999999999999,
-      "log_loss": 0.24242474356433186,
+      "log_loss": 0.2424247435643465,
       "confusion_matrix": [
         [
           5,
@@ -84,7 +84,7 @@
   "selected_model_metrics": {
     "accuracy": 0.9,
     "f1_score": 0.8999999999999999,
-    "log_loss": 0.24242474356433186,
+    "log_loss": 0.2424247435643465,
     "confusion_matrix": [
       [
         5,
