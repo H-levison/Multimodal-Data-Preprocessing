@@ -7,13 +7,13 @@
   "dnn_excluded_reason": "Only 8 recordings per member (32 base clips total); a DNN would have far too little data to train without severe overfitting.",
   "candidate_results": {
     "logistic_regression": {
-      "accuracy": 0.9166666666666666,
-      "f1_score": 0.8571428571428571,
-      "log_loss": 0.1673114006742935,
+      "accuracy": 0.9791666666666666,
+      "f1_score": 0.96,
+      "log_loss": 0.1821263232536523,
       "confusion_matrix": [
         [
-          32,
-          4
+          35,
+          1
         ],
         [
           0,
@@ -22,34 +22,34 @@
       ]
     },
     "random_forest": {
-      "accuracy": 0.9375,
-      "f1_score": 0.8695652173913043,
-      "log_loss": 0.18150252981917733,
+      "accuracy": 0.9791666666666666,
+      "f1_score": 0.96,
+      "log_loss": 0.11701110391398221,
       "confusion_matrix": [
         [
           35,
           1
         ],
         [
-          2,
-          10
+          0,
+          12
         ]
       ]
     }
   },
-  "selected_model": "random_forest",
+  "selected_model": "logistic_regression",
   "selected_model_metrics": {
-    "accuracy": 0.9375,
-    "f1_score": 0.8695652173913043,
-    "log_loss": 0.18150252981917733,
+    "accuracy": 0.9791666666666666,
+    "f1_score": 0.96,
+    "log_loss": 0.1821263232536523,
     "confusion_matrix": [
       [
         35,
         1
       ],
       [
-        2,
-        10
+        0,
+        12
       ]
     ]
   },
